@@ -3,841 +3,841 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Kiara · XV Años ✨</title>
+<title>Valentina · XV Años ✨</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
-  :root {
-    --black:     #000000;
-    --dark:      #050508;
-    --dark2:     #0A0A0F;
-    --white:     #FFFFFF;
-    --silver:    #C8CDD8;
-    --silver2:   #E8ECF5;
-    --text:      rgba(255,255,255,0.92);
-    --text-mid:  rgba(200,205,216,0.65);
-    --text-soft: rgba(200,205,216,0.35);
-  }
+:root {
+--black: #000000;
+--dark: #050508;
+--dark2: #0A0A0F;
+--white: #FFFFFF;
+--silver: #C8CDD8;
+--silver2: #E8ECF5;
+--text: rgba(255,255,255,0.92);
+--text-mid: rgba(200,205,216,0.65);
+--text-soft: rgba(200,205,216,0.35);
+}
 
-  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-  html { scroll-behavior:smooth; }
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; }
 
-  body {
-    background: var(--black);
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text);
-    overflow-x: hidden;
-    max-width: 430px;
-    margin: 0 auto;
-  }
+body {
+background: var(--black);
+font-family: 'Montserrat', sans-serif;
+color: var(--text);
+overflow-x: hidden;
+max-width: 430px;
+margin: 0 auto;
+}
 
-  #glitter-bg {
-    position:fixed; top:0; left:0;
-    width:100%; height:100%;
-    pointer-events:none; z-index:0;
-  }
+#glitter-bg {
+position:fixed; top:0; left:0;
+width:100%; height:100%;
+pointer-events:none; z-index:0;
+}
 
-  #page-wrap { position:relative; z-index:1; }
+#page-wrap { position:relative; z-index:1; }
 
-  /* ══ INTRO ══ */
-  #intro {
-    position:fixed; inset:0; background:#000;
-    z-index:1000;
-    display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    padding:2rem; overflow:hidden;
-    transition:opacity 1.2s ease;
-  }
-  #intro-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+/* ══ INTRO ══ */
+#intro {
+position:fixed; inset:0; background:#000;
+z-index:1000;
+display:flex; flex-direction:column;
+align-items:center; justify-content:center;
+padding:2rem; overflow:hidden;
+transition:opacity 1.2s ease;
+}
+#intro-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
 
-  .intro-content {
-    position:relative; z-index:2;
-    display:flex; flex-direction:column; align-items:center; text-align:center;
-  }
+.intro-content {
+position:relative; z-index:2;
+display:flex; flex-direction:column; align-items:center; text-align:center;
+}
 
-  .intro-xv {
-    font-family:'Cormorant Garamond',serif;
-    font-size:90px; font-weight:700;
-    color:transparent;
-    background:linear-gradient(160deg,#fff 0%,#C8CDD8 40%,#9AA0B0 100%);
-    -webkit-background-clip:text; background-clip:text;
-    line-height:0.85; letter-spacing:-2px;
-    filter:drop-shadow(0 0 30px rgba(200,205,216,0.3));
-    animation:fadeUp 1s ease 0.4s both;
-  }
-  .intro-script {
-    font-family:'Cormorant Garamond',serif;
-    font-size:13.2px; font-style:italic; font-weight:300;
-    color:var(--text-mid); letter-spacing:6px; text-transform:uppercase;
-    animation:fadeUp 1s ease 0.6s both; margin-top:0.25rem;
-  }
-  .intro-name {
-    font-family:'Cormorant Garamond',serif;
-    font-size:72px; font-weight:600; color:var(--white);
-    letter-spacing:4px;
-    animation:fadeUp 1s ease 0.8s both; margin-top:0.5rem;
-    filter:drop-shadow(0 0 40px rgba(255,255,255,0.2));
-  }
-  .intro-line {
-    width:120px; height:1px;
-    background:linear-gradient(90deg,transparent,var(--silver),transparent);
-    margin:1.5rem auto; animation:fadeUp 1s ease 1s both;
-  }
-  .intro-sub {
-    font-size:9.9px; letter-spacing:4px; text-transform:uppercase;
-    color:var(--text-soft); font-weight:300;
-    animation:fadeUp 1s ease 1.2s both; line-height:1.9;
-  }
-  .intro-btn {
-    margin-top:2.5rem; background:transparent;
-    border:1px solid rgba(200,205,216,0.4); color:var(--silver2);
-    padding:16px 52px;
-    font-family:'Montserrat',sans-serif; font-size:9.9px; font-weight:600;
-    letter-spacing:4px; text-transform:uppercase; cursor:pointer;
-    animation:fadeUp 1s ease 1.4s both;
-    box-shadow:0 0 30px rgba(200,205,216,0.08); transition:all 0.3s;
-  }
-  .intro-btn:hover { background:rgba(200,205,216,0.1); border-color:rgba(200,205,216,0.7); }
-  .intro-btn:active { transform:scale(0.96); }
+.intro-xv {
+font-family:'Cormorant Garamond',serif;
+font-size:90px; font-weight:700;
+color:transparent;
+background:linear-gradient(160deg,#fff 0%,#C8CDD8 40%,#9AA0B0 100%);
+-webkit-background-clip:text; background-clip:text;
+line-height:0.85; letter-spacing:-2px;
+filter:drop-shadow(0 0 30px rgba(200,205,216,0.3));
+animation:fadeUp 1s ease 0.4s both;
+}
+.intro-script {
+font-family:'Cormorant Garamond',serif;
+font-size:13.2px; font-style:italic; font-weight:300;
+color:var(--text-mid); letter-spacing:6px; text-transform:uppercase;
+animation:fadeUp 1s ease 0.6s both; margin-top:0.25rem;
+}
+.intro-name {
+font-family:'Cormorant Garamond',serif;
+font-size:72px; font-weight:600; color:var(--white);
+letter-spacing:4px;
+animation:fadeUp 1s ease 0.8s both; margin-top:0.5rem;
+filter:drop-shadow(0 0 40px rgba(255,255,255,0.2));
+}
+.intro-line {
+width:120px; height:1px;
+background:linear-gradient(90deg,transparent,var(--silver),transparent);
+margin:1.5rem auto; animation:fadeUp 1s ease 1s both;
+}
+.intro-sub {
+font-size:9.9px; letter-spacing:4px; text-transform:uppercase;
+color:var(--text-soft); font-weight:300;
+animation:fadeUp 1s ease 1.2s both; line-height:1.9;
+}
+.intro-btn {
+margin-top:2.5rem; background:transparent;
+border:1px solid rgba(200,205,216,0.4); color:var(--silver2);
+padding:16px 52px;
+font-family:'Montserrat',sans-serif; font-size:9.9px; font-weight:600;
+letter-spacing:4px; text-transform:uppercase; cursor:pointer;
+animation:fadeUp 1s ease 1.4s both;
+box-shadow:0 0 30px rgba(200,205,216,0.08); transition:all 0.3s;
+}
+.intro-btn:hover { background:rgba(200,205,216,0.1); border-color:rgba(200,205,216,0.7); }
+.intro-btn:active { transform:scale(0.96); }
 
-  /* ══ MAIN ══ */
-  #main { opacity:0; transition:opacity 1.2s ease; }
-  #main.visible { opacity:1; }
+/* ══ MAIN ══ */
+#main { opacity:0; transition:opacity 1.2s ease; }
+#main.visible { opacity:1; }
 
-  /* ══ HERO ══ */
-  .hero {
-    min-height:100svh;
-    display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    padding:4rem 1.5rem 3rem; text-align:center; position:relative;
-  }
-  .hero-glow {
-    position:absolute; top:50%; left:50%;
-    transform:translate(-50%,-50%);
-    width:300px; height:300px;
-    background:radial-gradient(circle,rgba(200,205,216,0.06) 0%,transparent 70%);
-    border-radius:50%; pointer-events:none;
-    animation:glowPulse 4s ease-in-out infinite;
-  }
-  .hero-eyebrow {
-    font-size:9.9px; letter-spacing:5px; text-transform:uppercase;
-    color:var(--text-soft); font-weight:400; margin-bottom:1.5rem;
-    animation:fadeUp 1s ease 0.2s both;
-  }
-  .hero-xv {
-    font-family:'Cormorant Garamond',serif;
-    font-size:120px; font-weight:700; color:transparent;
-    background:linear-gradient(160deg,#fff 0%,#C8CDD8 50%,#8A96A8 100%);
-    -webkit-background-clip:text; background-clip:text;
-    line-height:0.85;
-    filter:drop-shadow(0 0 30px rgba(200,205,216,0.25));
-    animation:fadeUp 1s ease 0.4s both;
-  }
-  .hero-name {
-    font-family:'Cormorant Garamond',serif;
-    font-size:52px; font-weight:300; font-style:italic; color:var(--white);
-    animation:fadeUp 1s ease 0.6s both; margin-top:0.2rem; letter-spacing:2px;
-  }
-  .hero-tagline {
-    font-size:9.9px; letter-spacing:4px; text-transform:uppercase;
-    color:var(--text-soft); font-weight:300; margin-top:1.5rem;
-    animation:fadeUp 1s ease 0.8s both; line-height:1.9;
-  }
-  .hero-date {
-    margin-top:1.5rem; display:inline-block;
-    border:1px solid rgba(200,205,216,0.2);
-    padding:10px 28px; font-size:11px; letter-spacing:3px;
-    color:var(--text-mid); animation:fadeUp 1s ease 1s both;
-    background:rgba(200,205,216,0.04);
-  }
-  .hero-scroll {
-    position:absolute; bottom:1.5rem; left:50%;
-    transform:translateX(-50%);
-    display:flex; flex-direction:column; align-items:center; gap:6px;
-    cursor:pointer; animation:bounce 2s ease infinite 2s;
-  }
-  .hero-scroll span { font-size:7.7px; letter-spacing:4px; color:var(--text-soft); text-transform:uppercase; }
-  .hero-scroll-arr {
-    width:16px; height:16px;
-    border-right:1px solid rgba(200,205,216,0.3);
-    border-bottom:1px solid rgba(200,205,216,0.3);
-    transform:rotate(45deg);
-  }
+/* ══ HERO ══ */
+.hero {
+min-height:100svh;
+display:flex; flex-direction:column;
+align-items:center; justify-content:center;
+padding:4rem 1.5rem 3rem; text-align:center; position:relative;
+}
+.hero-glow {
+position:absolute; top:50%; left:50%;
+transform:translate(-50%,-50%);
+width:300px; height:300px;
+background:radial-gradient(circle,rgba(200,205,216,0.06) 0%,transparent 70%);
+border-radius:50%; pointer-events:none;
+animation:glowPulse 4s ease-in-out infinite;
+}
+.hero-eyebrow {
+font-size:9.9px; letter-spacing:5px; text-transform:uppercase;
+color:var(--text-soft); font-weight:400; margin-bottom:1.5rem;
+animation:fadeUp 1s ease 0.2s both;
+}
+.hero-xv {
+font-family:'Cormorant Garamond',serif;
+font-size:120px; font-weight:700; color:transparent;
+background:linear-gradient(160deg,#fff 0%,#C8CDD8 50%,#8A96A8 100%);
+-webkit-background-clip:text; background-clip:text;
+line-height:0.85;
+filter:drop-shadow(0 0 30px rgba(200,205,216,0.25));
+animation:fadeUp 1s ease 0.4s both;
+}
+.hero-name {
+font-family:'Cormorant Garamond',serif;
+font-size:52px; font-weight:300; font-style:italic; color:var(--white);
+animation:fadeUp 1s ease 0.6s both; margin-top:0.2rem; letter-spacing:2px;
+}
+.hero-tagline {
+font-size:9.9px; letter-spacing:4px; text-transform:uppercase;
+color:var(--text-soft); font-weight:300; margin-top:1.5rem;
+animation:fadeUp 1s ease 0.8s both; line-height:1.9;
+}
+.hero-date {
+margin-top:1.5rem; display:inline-block;
+border:1px solid rgba(200,205,216,0.2);
+padding:10px 28px; font-size:11px; letter-spacing:3px;
+color:var(--text-mid); animation:fadeUp 1s ease 1s both;
+background:rgba(200,205,216,0.04);
+}
+.hero-scroll {
+position:absolute; bottom:1.5rem; left:50%;
+transform:translateX(-50%);
+display:flex; flex-direction:column; align-items:center; gap:6px;
+cursor:pointer; animation:bounce 2s ease infinite 2s;
+}
+.hero-scroll span { font-size:7.7px; letter-spacing:4px; color:var(--text-soft); text-transform:uppercase; }
+.hero-scroll-arr {
+width:16px; height:16px;
+border-right:1px solid rgba(200,205,216,0.3);
+border-bottom:1px solid rgba(200,205,216,0.3);
+transform:rotate(45deg);
+}
 
-  /* ══ COUNTDOWN ══ */
-  .cd-bokeh-strip {
-    position:relative; padding:3rem 1.5rem; overflow:hidden;
-    background:linear-gradient(135deg,#0A0A10,#050508);
-    border-top:1px solid rgba(200,205,216,0.08);
-    border-bottom:1px solid rgba(200,205,216,0.08);
-  }
-  .bokeh-layer { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-  .bk {
-    position:absolute; border-radius:50%;
-    background:radial-gradient(circle,rgba(200,205,216,0.18) 0%,transparent 70%);
-    animation:bokehFloat var(--d,8s) ease-in-out infinite var(--dl,0s);
-    filter:blur(2px);
-  }
-  .cd-label-top {
-    font-size:9.9px; letter-spacing:5px; text-transform:uppercase;
-    color:var(--text-soft); font-weight:300; text-align:center; margin-bottom:0.5rem;
-  }
-  .cd-title {
-    font-family:'Cormorant Garamond',serif; font-size:14.3px; font-style:italic;
-    color:var(--text-mid); text-align:center; margin-bottom:2rem; letter-spacing:1px;
-  }
-  .cd-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; position:relative; z-index:2; }
-  .cd-item { text-align:center; }
-  .cd-num-wrap {
-    position:relative; background:rgba(255,255,255,0.03);
-    border:1px solid rgba(200,205,216,0.12);
-    padding:1.2rem 0.4rem 1rem; margin-bottom:0.5rem;
-  }
-  .cd-num-wrap::before {
-    content:''; position:absolute; top:0; left:20%; right:20%; height:1px;
-    background:linear-gradient(90deg,transparent,rgba(200,205,216,0.4),transparent);
-  }
-  .cd-num {
-    font-family:'Cormorant Garamond',serif;
-    font-size:44px; font-weight:700; color:var(--white); line-height:1; display:block;
-    text-shadow:0 0 20px rgba(200,205,216,0.4);
-  }
-  .cd-lbl { font-size:7.7px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); font-weight:500; }
+/* ══ COUNTDOWN ══ */
+.cd-bokeh-strip {
+position:relative; padding:3rem 1.5rem; overflow:hidden;
+background:linear-gradient(135deg,#0A0A10,#050508);
+border-top:1px solid rgba(200,205,216,0.08);
+border-bottom:1px solid rgba(200,205,216,0.08);
+}
+.bokeh-layer { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.bk {
+position:absolute; border-radius:50%;
+background:radial-gradient(circle,rgba(200,205,216,0.18) 0%,transparent 70%);
+animation:bokehFloat var(--d,8s) ease-in-out infinite var(--dl,0s);
+filter:blur(2px);
+}
+.cd-label-top {
+font-size:9.9px; letter-spacing:5px; text-transform:uppercase;
+color:var(--text-soft); font-weight:300; text-align:center; margin-bottom:0.5rem;
+}
+.cd-title {
+font-family:'Cormorant Garamond',serif; font-size:14.3px; font-style:italic;
+color:var(--text-mid); text-align:center; margin-bottom:2rem; letter-spacing:1px;
+}
+.cd-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; position:relative; z-index:2; }
+.cd-item { text-align:center; }
+.cd-num-wrap {
+position:relative; background:rgba(255,255,255,0.03);
+border:1px solid rgba(200,205,216,0.12);
+padding:1.2rem 0.4rem 1rem; margin-bottom:0.5rem;
+}
+.cd-num-wrap::before {
+content:''; position:absolute; top:0; left:20%; right:20%; height:1px;
+background:linear-gradient(90deg,transparent,rgba(200,205,216,0.4),transparent);
+}
+.cd-num {
+font-family:'Cormorant Garamond',serif;
+font-size:44px; font-weight:700; color:var(--white); line-height:1; display:block;
+text-shadow:0 0 20px rgba(200,205,216,0.4);
+}
+.cd-lbl { font-size:7.7px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); font-weight:500; }
 
-  /* ══ SECTION BASE ══ */
-  .section { padding:3.5rem 1.5rem; position:relative; }
-  .s-eyebrow {
-    font-size:8.8px; letter-spacing:5px; text-transform:uppercase;
-    color:var(--text-soft); font-weight:400; margin-bottom:0.5rem;
-  }
-  .s-title {
-    font-family:'Cormorant Garamond',serif;
-    font-size:36px; font-weight:600; color:var(--white); line-height:1.05;
-  }
-  .s-div { display:flex; align-items:center; gap:14px; margin:1.75rem 0; }
-  .s-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(200,205,216,0.2)); }
-  .s-line.r { background:linear-gradient(270deg,transparent,rgba(200,205,216,0.2)); }
-  .s-star { font-size:13.2px; color:var(--silver); opacity:0.5; }
+/* ══ SECTION BASE ══ */
+.section { padding:3.5rem 1.5rem; position:relative; }
+.s-eyebrow {
+font-size:8.8px; letter-spacing:5px; text-transform:uppercase;
+color:var(--text-soft); font-weight:400; margin-bottom:0.5rem;
+}
+.s-title {
+font-family:'Cormorant Garamond',serif;
+font-size:36px; font-weight:600; color:var(--white); line-height:1.05;
+}
+.s-div { display:flex; align-items:center; gap:14px; margin:1.75rem 0; }
+.s-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(200,205,216,0.2)); }
+.s-line.r { background:linear-gradient(270deg,transparent,rgba(200,205,216,0.2)); }
+.s-star { font-size:13.2px; color:var(--silver); opacity:0.5; }
 
-  /* ══ GALLERY — 3 fotos sin recortar ══ */
-  .gal-wrap {
-    display:flex; flex-direction:column; gap:3px;
-  }
+/* ══ GALLERY — 3 fotos sin recortar ══ */
+.gal-wrap {
+display:flex; flex-direction:column; gap:3px;
+}
 
-  /* Foto 1: hero grande */
-  .gal-hero {
-    width:100%; position:relative;
-    background:#080810;
-    border:1px solid rgba(200,205,216,0.08);
-    overflow:hidden; cursor:pointer;
-    transition:border-color 0.3s;
-  }
-  .gal-hero:hover { border-color:rgba(200,205,216,0.25); }
+/* Foto 1: hero grande */
+.gal-hero {
+width:100%; position:relative;
+background:#080810;
+border:1px solid rgba(200,205,216,0.08);
+overflow:hidden; cursor:pointer;
+transition:border-color 0.3s;
+}
+.gal-hero:hover { border-color:rgba(200,205,216,0.25); }
 
-  .gal-hero img {
-    width:100%; height:auto; display:block;
-    /* No object-fit crop — imagen completa */
-    transition:transform 0.6s ease;
-  }
-  .gal-hero:hover img { transform:scale(1.02); }
+.gal-hero img {
+width:100%; height:auto; display:block;
+/* No object-fit crop — imagen completa */
+transition:transform 0.6s ease;
+}
+.gal-hero:hover img { transform:scale(1.02); }
 
-  /* Fotos 2+3: lado a lado */
-  .gal-pair {
-    display:grid; grid-template-columns:1fr 1fr; gap:3px;
-  }
+/* Fotos 2+3: lado a lado */
+.gal-pair {
+display:grid; grid-template-columns:1fr 1fr; gap:3px;
+}
 
-  .gal-pair-item {
-    position:relative; background:#080810;
-    border:1px solid rgba(200,205,216,0.08);
-    overflow:hidden; cursor:pointer;
-    transition:border-color 0.3s;
-  }
-  .gal-pair-item:hover { border-color:rgba(200,205,216,0.25); }
+.gal-pair-item {
+position:relative; background:#080810;
+border:1px solid rgba(200,205,216,0.08);
+overflow:hidden; cursor:pointer;
+transition:border-color 0.3s;
+}
+.gal-pair-item:hover { border-color:rgba(200,205,216,0.25); }
 
-  .gal-pair-item img {
-    width:100%; height:auto; display:block;
-    transition:transform 0.6s ease;
-  }
-  .gal-pair-item:hover img { transform:scale(1.02); }
+.gal-pair-item img {
+width:100%; height:auto; display:block;
+transition:transform 0.6s ease;
+}
+.gal-pair-item:hover img { transform:scale(1.02); }
 
-  /* Shimmer overlay (sutil, no opaco) */
-  .gal-shimmer {
-    position:absolute; inset:0; pointer-events:none;
-    background:linear-gradient(to top,rgba(0,0,0,0.3) 0%,transparent 40%);
-  }
+/* Shimmer overlay (sutil, no opaco) */
+.gal-shimmer {
+position:absolute; inset:0; pointer-events:none;
+background:linear-gradient(to top,rgba(0,0,0,0.3) 0%,transparent 40%);
+}
 
-  .gal-lbl {
-    position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
-    font-size:7.7px; letter-spacing:3px; text-transform:uppercase;
-    color:rgba(200,205,216,0.55); white-space:nowrap;
-    text-shadow:0 1px 4px rgba(0,0,0,0.8);
-  }
+.gal-lbl {
+position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
+font-size:7.7px; letter-spacing:3px; text-transform:uppercase;
+color:rgba(200,205,216,0.55); white-space:nowrap;
+text-shadow:0 1px 4px rgba(0,0,0,0.8);
+}
 
-  /* ══ LIGHTBOX ══ */
-  #lightbox {
-    display:none; position:fixed; inset:0;
-    background:rgba(0,0,0,0.97);
-    z-index:800; align-items:center; justify-content:center;
-    padding:1rem; flex-direction:column; gap:1rem;
-  }
-  #lightbox.open { display:flex; }
-  #lb-img {
-    max-width:100%; max-height:90svh;
-    object-fit:contain; /* completa, sin recorte */
-    border:1px solid rgba(200,205,216,0.12);
-  }
-  #lb-cap { font-size:9.9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); }
-  #lb-close {
-    position:absolute; top:14px; right:14px;
-    width:38px; height:38px;
-    background:rgba(200,205,216,0.1); border:1px solid rgba(200,205,216,0.2);
-    border-radius:50%; color:var(--silver); font-size:17.6px;
-    cursor:pointer; display:flex; align-items:center; justify-content:center;
-  }
+/* ══ LIGHTBOX ══ */
+#lightbox {
+display:none; position:fixed; inset:0;
+background:rgba(0,0,0,0.97);
+z-index:800; align-items:center; justify-content:center;
+padding:1rem; flex-direction:column; gap:1rem;
+}
+#lightbox.open { display:flex; }
+#lb-img {
+max-width:100%; max-height:90svh;
+object-fit:contain; /* completa, sin recorte */
+border:1px solid rgba(200,205,216,0.12);
+}
+#lb-cap { font-size:9.9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); }
+#lb-close {
+position:absolute; top:14px; right:14px;
+width:38px; height:38px;
+background:rgba(200,205,216,0.1); border:1px solid rgba(200,205,216,0.2);
+border-radius:50%; color:var(--silver); font-size:17.6px;
+cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
 
-  /* ══ DRESSCODE ══ */
-  .dc-card {
-    background:rgba(255,255,255,0.02); border:1px solid rgba(200,205,216,0.12);
-    padding:2rem 1.5rem; text-align:center; position:relative; overflow:hidden;
-  }
-  .dc-card::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
-  }
-  .dc-card::after {
-    content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
-  }
-  .dc-icon-wrap {
-    width:60px; height:60px; margin:0 auto 1.25rem;
-    border:1px solid rgba(200,205,216,0.2); border-radius:50%;
-    display:flex; align-items:center; justify-content:center; font-size:24px;
-    background:rgba(200,205,216,0.05); box-shadow:0 0 30px rgba(200,205,216,0.1);
-  }
-  .dc-title {
-    font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:600;
-    color:var(--white); letter-spacing:3px; margin-bottom:0.5rem; text-transform:uppercase;
-  }
-  .dc-subtitle { font-size:9.9px; letter-spacing:4px; text-transform:uppercase; color:var(--silver); margin-bottom:1rem; font-weight:300; }
-  .dc-desc { font-size:13.2px; font-weight:300; color:var(--text-mid); line-height:1.9; }
-  .dc-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:1.5rem; }
-  .dc-tag {
-    border:1px solid rgba(200,205,216,0.2); padding:5px 16px;
-    font-size:8.8px; letter-spacing:3px; text-transform:uppercase;
-    color:var(--text-mid); font-weight:400; background:rgba(200,205,216,0.04);
-  }
+/* ══ DRESSCODE ══ */
+.dc-card {
+background:rgba(255,255,255,0.02); border:1px solid rgba(200,205,216,0.12);
+padding:2rem 1.5rem; text-align:center; position:relative; overflow:hidden;
+}
+.dc-card::before {
+content:''; position:absolute; top:0; left:0; right:0; height:1px;
+background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
+}
+.dc-card::after {
+content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
+}
+.dc-icon-wrap {
+width:60px; height:60px; margin:0 auto 1.25rem;
+border:1px solid rgba(200,205,216,0.2); border-radius:50%;
+display:flex; align-items:center; justify-content:center; font-size:24px;
+background:rgba(200,205,216,0.05); box-shadow:0 0 30px rgba(200,205,216,0.1);
+}
+.dc-title {
+font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:600;
+color:var(--white); letter-spacing:3px; margin-bottom:0.5rem; text-transform:uppercase;
+}
+.dc-subtitle { font-size:9.9px; letter-spacing:4px; text-transform:uppercase; color:var(--silver); margin-bottom:1rem; font-weight:300; }
+.dc-desc { font-size:13.2px; font-weight:300; color:var(--text-mid); line-height:1.9; }
+.dc-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:1.5rem; }
+.dc-tag {
+border:1px solid rgba(200,205,216,0.2); padding:5px 16px;
+font-size:8.8px; letter-spacing:3px; text-transform:uppercase;
+color:var(--text-mid); font-weight:400; background:rgba(200,205,216,0.04);
+}
 
-  /* ══ REGALO COFRE ══ */
-  .regalo-card {
-    background:rgba(255,255,255,0.02); border:1px solid rgba(200,205,216,0.12);
-    padding:2rem 1.5rem; text-align:center; position:relative; overflow:hidden;
-  }
-  .regalo-card::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
-  }
-  .regalo-card::after {
-    content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
-  }
-  .cofre-icon { font-size:52px; display:block; margin-bottom:1rem; filter:drop-shadow(0 0 20px rgba(200,205,216,0.4)); animation:gemFloat 3s ease-in-out infinite; }
-  .regalo-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:var(--white); letter-spacing:2px; margin-bottom:0.5rem; }
-  .regalo-subtitle { font-size:8.8px; letter-spacing:4px; text-transform:uppercase; color:var(--silver); font-weight:300; margin-bottom:1.25rem; }
-  .regalo-desc { font-size:13.2px; font-weight:300; color:var(--text-mid); line-height:1.9; margin-bottom:1.25rem; }
-  .regalo-highlight {
-    background:rgba(200,205,216,0.05); border:1px solid rgba(200,205,216,0.15);
-    padding:1.25rem 1.25rem 1rem; margin-top:0.5rem;
-    font-size:12.1px; font-weight:300; color:var(--text-mid);
-    line-height:1.9; letter-spacing:0.5px; position:relative;
-  }
-  .regalo-highlight::before {
-    content:'💌'; position:absolute; top:-14px; left:50%;
-    transform:translateX(-50%); font-size:22px;
-    filter:drop-shadow(0 0 10px rgba(200,205,216,0.4));
-  }
+/* ══ REGALO COFRE ══ */
+.regalo-card {
+background:rgba(255,255,255,0.02); border:1px solid rgba(200,205,216,0.12);
+padding:2rem 1.5rem; text-align:center; position:relative; overflow:hidden;
+}
+.regalo-card::before {
+content:''; position:absolute; top:0; left:0; right:0; height:1px;
+background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
+}
+.regalo-card::after {
+content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
+}
+.cofre-icon { font-size:52px; display:block; margin-bottom:1rem; filter:drop-shadow(0 0 20px rgba(200,205,216,0.4)); animation:gemFloat 3s ease-in-out infinite; }
+.regalo-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:var(--white); letter-spacing:2px; margin-bottom:0.5rem; }
+.regalo-subtitle { font-size:8.8px; letter-spacing:4px; text-transform:uppercase; color:var(--silver); font-weight:300; margin-bottom:1.25rem; }
+.regalo-desc { font-size:13.2px; font-weight:300; color:var(--text-mid); line-height:1.9; margin-bottom:1.25rem; }
+.regalo-highlight {
+background:rgba(200,205,216,0.05); border:1px solid rgba(200,205,216,0.15);
+padding:1.25rem 1.25rem 1rem; margin-top:0.5rem;
+font-size:12.1px; font-weight:300; color:var(--text-mid);
+line-height:1.9; letter-spacing:0.5px; position:relative;
+}
+.regalo-highlight::before {
+content:'💌'; position:absolute; top:-14px; left:50%;
+transform:translateX(-50%); font-size:22px;
+filter:drop-shadow(0 0 10px rgba(200,205,216,0.4));
+}
 
-  /* ══ DETAILS ══ */
-  .det-card {
-    display:flex; align-items:center; gap:1.25rem;
-    padding:1.25rem 0; border-bottom:1px solid rgba(200,205,216,0.07);
-  }
-  .det-card:last-child { border-bottom:none; }
-  .det-num {
-    font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300;
-    color:rgba(200,205,216,0.2); flex-shrink:0; width:40px; text-align:center; line-height:1;
-  }
-  .det-info { flex:1; }
-  .det-lbl { font-size:8.8px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); font-weight:500; margin-bottom:4px; }
-  .det-val { font-size:15.4px; font-weight:400; color:var(--text); line-height:1.3; }
-  .det-sub { font-size:12.1px; font-weight:300; color:var(--text-mid); margin-top:2px; }
+/* ══ DETAILS ══ */
+.det-card {
+display:flex; align-items:center; gap:1.25rem;
+padding:1.25rem 0; border-bottom:1px solid rgba(200,205,216,0.07);
+}
+.det-card:last-child { border-bottom:none; }
+.det-num {
+font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300;
+color:rgba(200,205,216,0.2); flex-shrink:0; width:40px; text-align:center; line-height:1;
+}
+.det-info { flex:1; }
+.det-lbl { font-size:8.8px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); font-weight:500; margin-bottom:4px; }
+.det-val { font-size:15.4px; font-weight:400; color:var(--text); line-height:1.3; }
+.det-sub { font-size:12.1px; font-weight:300; color:var(--text-mid); margin-top:2px; }
 
-  /* ══ MAP ══ */
-  .map-wrap { border:1px solid rgba(200,205,216,0.12); overflow:hidden; }
-  #map { width:100%; height:260px; }
-  .map-body {
-    padding:1.25rem; background:rgba(255,255,255,0.02);
-    border-top:1px solid rgba(200,205,216,0.08);
-  }
-  .map-name { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; color:var(--white); }
-  .map-addr { font-size:12.1px; font-weight:300; color:var(--text-mid); line-height:1.6; margin-top:3px; }
-  .btn-gps {
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    width:100%; background:transparent; border:1px solid rgba(200,205,216,0.25);
-    color:var(--silver2); padding:14px; margin-top:1rem;
-    font-family:'Montserrat',sans-serif; font-size:9.9px; font-weight:600;
-    letter-spacing:4px; text-transform:uppercase; cursor:pointer;
-    box-shadow:0 0 30px rgba(200,205,216,0.05); transition:all 0.3s;
-  }
-  .btn-gps:hover { background:rgba(200,205,216,0.08); border-color:rgba(200,205,216,0.5); }
-  .btn-gps:active { transform:scale(0.98); }
+/* ══ MAP ══ */
+.map-wrap { border:1px solid rgba(200,205,216,0.12); overflow:hidden; }
+#map { width:100%; height:260px; }
+.map-body {
+padding:1.25rem; background:rgba(255,255,255,0.02);
+border-top:1px solid rgba(200,205,216,0.08);
+}
+.map-name { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; color:var(--white); }
+.map-addr { font-size:12.1px; font-weight:300; color:var(--text-mid); line-height:1.6; margin-top:3px; }
+.btn-gps {
+display:flex; align-items:center; justify-content:center; gap:10px;
+width:100%; background:transparent; border:1px solid rgba(200,205,216,0.25);
+color:var(--silver2); padding:14px; margin-top:1rem;
+font-family:'Montserrat',sans-serif; font-size:9.9px; font-weight:600;
+letter-spacing:4px; text-transform:uppercase; cursor:pointer;
+box-shadow:0 0 30px rgba(200,205,216,0.05); transition:all 0.3s;
+}
+.btn-gps:hover { background:rgba(200,205,216,0.08); border-color:rgba(200,205,216,0.5); }
+.btn-gps:active { transform:scale(0.98); }
 
-  /* ══ RSVP ══ */
-  .rsvp-header { text-align:center; padding:3rem 1.5rem 0; }
-  .rsvp-label { font-size:9.9px; letter-spacing:5px; text-transform:uppercase; color:var(--text-soft); font-weight:300; margin-bottom:0.75rem; display:block; }
-  .rsvp-title { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:600; color:var(--white); margin-bottom:0.75rem; }
-  .rsvp-sub { font-size:13.2px; font-weight:300; color:var(--text-mid); line-height:1.8; }
-  .rsvp-deadline {
-    display:inline-flex; align-items:center; gap:8px; margin-top:1rem;
-    border:1px solid rgba(200,205,216,0.2); padding:8px 20px;
-    font-size:9.9px; letter-spacing:3px; text-transform:uppercase;
-    color:var(--silver); background:rgba(200,205,216,0.04);
-  }
+/* ══ RSVP ══ */
+.rsvp-header { text-align:center; padding:3rem 1.5rem 0; }
+.rsvp-label { font-size:9.9px; letter-spacing:5px; text-transform:uppercase; color:var(--text-soft); font-weight:300; margin-bottom:0.75rem; display:block; }
+.rsvp-title { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:600; color:var(--white); margin-bottom:0.75rem; }
+.rsvp-sub { font-size:13.2px; font-weight:300; color:var(--text-mid); line-height:1.8; }
+.rsvp-deadline {
+display:inline-flex; align-items:center; gap:8px; margin-top:1rem;
+border:1px solid rgba(200,205,216,0.2); padding:8px 20px;
+font-size:9.9px; letter-spacing:3px; text-transform:uppercase;
+color:var(--silver); background:rgba(200,205,216,0.04);
+}
 
-  .cf-wrap {
-    margin:2rem 1.5rem; background:rgba(255,255,255,0.02);
-    border:1px solid rgba(200,205,216,0.1); padding:2rem 1.5rem; position:relative;
-  }
-  .cf-wrap::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
-  }
+.cf-wrap {
+margin:2rem 1.5rem; background:rgba(255,255,255,0.02);
+border:1px solid rgba(200,205,216,0.1); padding:2rem 1.5rem; position:relative;
+}
+.cf-wrap::before {
+content:''; position:absolute; top:0; left:0; right:0; height:1px;
+background:linear-gradient(90deg,transparent,rgba(200,205,216,0.3),transparent);
+}
 
-  .f-group { margin-bottom:16px; }
-  .f-label { display:block; font-size:8.8px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); font-weight:500; margin-bottom:8px; }
-  .f-input {
-    width:100%; background:rgba(255,255,255,0.03);
-    border:1px solid rgba(200,205,216,0.15); padding:13px 14px;
-    font-family:'Montserrat',sans-serif; font-size:14.3px; color:var(--white);
-    outline:none; transition:border-color 0.2s; appearance:none;
-  }
-  .f-input:focus { border-color:rgba(200,205,216,0.4); }
-  .f-input::placeholder { color:var(--text-soft); }
+.f-group { margin-bottom:16px; }
+.f-label { display:block; font-size:8.8px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); font-weight:500; margin-bottom:8px; }
+.f-input {
+width:100%; background:rgba(255,255,255,0.03);
+border:1px solid rgba(200,205,216,0.15); padding:13px 14px;
+font-family:'Montserrat',sans-serif; font-size:14.3px; color:var(--white);
+outline:none; transition:border-color 0.2s; appearance:none;
+}
+.f-input:focus { border-color:rgba(200,205,216,0.4); }
+.f-input::placeholder { color:var(--text-soft); }
 
-  .f-radio-group { display:flex; gap:10px; }
-  .f-radio-opt {
-    flex:1; border:1px solid rgba(200,205,216,0.15);
-    padding:12px 8px; text-align:center; cursor:pointer;
-    font-size:11px; letter-spacing:2px; text-transform:uppercase;
-    color:var(--text-mid); background:rgba(255,255,255,0.02); transition:all 0.2s; user-select:none;
-  }
-  .f-radio-opt.selected { border-color:rgba(200,205,216,0.5); background:rgba(200,205,216,0.1); color:var(--white); }
+.f-radio-group { display:flex; gap:10px; }
+.f-radio-opt {
+flex:1; border:1px solid rgba(200,205,216,0.15);
+padding:12px 8px; text-align:center; cursor:pointer;
+font-size:11px; letter-spacing:2px; text-transform:uppercase;
+color:var(--text-mid); background:rgba(255,255,255,0.02); transition:all 0.2s; user-select:none;
+}
+.f-radio-opt.selected { border-color:rgba(200,205,216,0.5); background:rgba(200,205,216,0.1); color:var(--white); }
 
-  .ctr-group { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  .ctr-wrap { background:rgba(255,255,255,0.02); border:1px solid rgba(200,205,216,0.12); padding:12px 14px; }
-  .ctr-lbl { font-size:8.8px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); font-weight:500; display:block; margin-bottom:8px; }
-  .ctr-row { display:flex; align-items:center; justify-content:space-between; }
-  .ctr-btn {
-    width:30px; height:30px; border:1px solid rgba(200,205,216,0.25);
-    background:transparent; color:var(--silver); font-size:19.8px; font-weight:200;
-    cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s;
-  }
-  .ctr-btn:active { background:rgba(200,205,216,0.12); }
-  .ctr-val { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--white); min-width:30px; text-align:center; }
+.ctr-group { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.ctr-wrap { background:rgba(255,255,255,0.02); border:1px solid rgba(200,205,216,0.12); padding:12px 14px; }
+.ctr-lbl { font-size:8.8px; letter-spacing:3px; text-transform:uppercase; color:var(--text-soft); font-weight:500; display:block; margin-bottom:8px; }
+.ctr-row { display:flex; align-items:center; justify-content:space-between; }
+.ctr-btn {
+width:30px; height:30px; border:1px solid rgba(200,205,216,0.25);
+background:transparent; color:var(--silver); font-size:19.8px; font-weight:200;
+cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s;
+}
+.ctr-btn:active { background:rgba(200,205,216,0.12); }
+.ctr-val { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--white); min-width:30px; text-align:center; }
 
-  .btn-confirm {
-    width:100%; background:transparent; border:1px solid rgba(200,205,216,0.3);
-    color:var(--silver2); padding:16px; margin-top:0.5rem;
-    font-family:'Montserrat',sans-serif; font-size:9.9px; font-weight:600;
-    letter-spacing:4px; text-transform:uppercase; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    box-shadow:0 0 30px rgba(200,205,216,0.06); transition:all 0.3s;
-  }
-  .btn-confirm:hover { background:rgba(200,205,216,0.1); border-color:rgba(200,205,216,0.6); }
-  .btn-confirm:active { transform:scale(0.98); }
+.btn-confirm {
+width:100%; background:transparent; border:1px solid rgba(200,205,216,0.3);
+color:var(--silver2); padding:16px; margin-top:0.5rem;
+font-family:'Montserrat',sans-serif; font-size:9.9px; font-weight:600;
+letter-spacing:4px; text-transform:uppercase; cursor:pointer;
+display:flex; align-items:center; justify-content:center; gap:10px;
+box-shadow:0 0 30px rgba(200,205,216,0.06); transition:all 0.3s;
+}
+.btn-confirm:hover { background:rgba(200,205,216,0.1); border-color:rgba(200,205,216,0.6); }
+.btn-confirm:active { transform:scale(0.98); }
 
-  .cf-ok { display:none; text-align:center; padding:2rem 1rem; }
-  .cf-ok.show { display:block; }
-  .cf-ok-icon { font-size:48px; margin-bottom:1rem; display:block; filter:drop-shadow(0 0 20px rgba(200,205,216,0.5)); }
-  .cf-ok-msg { font-family:'Cormorant Garamond',serif; font-size:24px; font-style:italic; color:var(--white); }
-  .cf-ok-sub { font-size:12.1px; color:var(--text-mid); margin-top:0.75rem; font-weight:300; line-height:1.7; }
+.cf-ok { display:none; text-align:center; padding:2rem 1rem; }
+.cf-ok.show { display:block; }
+.cf-ok-icon { font-size:48px; margin-bottom:1rem; display:block; filter:drop-shadow(0 0 20px rgba(200,205,216,0.5)); }
+.cf-ok-msg { font-family:'Cormorant Garamond',serif; font-size:24px; font-style:italic; color:var(--white); }
+.cf-ok-sub { font-size:12.1px; color:var(--text-mid); margin-top:0.75rem; font-weight:300; line-height:1.7; }
 
-  /* ══ FOOTER ══ */
-  .footer {
-    padding:4rem 2rem 2.5rem; text-align:center;
-    border-top:1px solid rgba(200,205,216,0.08); position:relative;
-  }
-  .ft-ornament { font-size:14.3px; color:var(--silver); opacity:0.3; letter-spacing:16px; display:block; margin-bottom:2rem; }
-  .ft-quote {
-    font-family:'Cormorant Garamond',serif; font-size:20.9px; font-style:italic; font-weight:300;
-    color:rgba(255,255,255,0.8); line-height:1.85; margin-bottom:2.5rem;
-    position:relative; padding:0 0.5rem;
-  }
-  .ft-quote::before {
-    content:'"'; position:absolute; top:-30px; left:-5px;
-    font-size:80px; color:rgba(200,205,216,0.1); line-height:1; font-style:normal;
-  }
-  .ft-name {
-    font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600;
-    color:transparent;
-    background:linear-gradient(160deg,#fff,#C8CDD8,#8A96A8);
-    -webkit-background-clip:text; background-clip:text;
-    letter-spacing:6px; filter:drop-shadow(0 0 20px rgba(200,205,216,0.2));
-  }
-  .ft-div { width:60px; height:1px; background:rgba(200,205,216,0.2); margin:1.5rem auto; }
-  .ft-brand { font-size:8.8px; letter-spacing:4px; text-transform:uppercase; color:var(--text-soft); }
-  .ft-stars { font-size:11px; color:var(--silver); opacity:0.25; letter-spacing:14px; margin-top:2rem; display:block; }
+/* ══ FOOTER ══ */
+.footer {
+padding:4rem 2rem 2.5rem; text-align:center;
+border-top:1px solid rgba(200,205,216,0.08); position:relative;
+}
+.ft-ornament { font-size:14.3px; color:var(--silver); opacity:0.3; letter-spacing:16px; display:block; margin-bottom:2rem; }
+.ft-quote {
+font-family:'Cormorant Garamond',serif; font-size:20.9px; font-style:italic; font-weight:300;
+color:rgba(255,255,255,0.8); line-height:1.85; margin-bottom:2.5rem;
+position:relative; padding:0 0.5rem;
+}
+.ft-quote::before {
+content:'"'; position:absolute; top:-30px; left:-5px;
+font-size:80px; color:rgba(200,205,216,0.1); line-height:1; font-style:normal;
+}
+.ft-name {
+font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600;
+color:transparent;
+background:linear-gradient(160deg,#fff,#C8CDD8,#8A96A8);
+-webkit-background-clip:text; background-clip:text;
+letter-spacing:6px; filter:drop-shadow(0 0 20px rgba(200,205,216,0.2));
+}
+.ft-div { width:60px; height:1px; background:rgba(200,205,216,0.2); margin:1.5rem auto; }
+.ft-brand { font-size:8.8px; letter-spacing:4px; text-transform:uppercase; color:var(--text-soft); }
+.ft-stars { font-size:11px; color:var(--silver); opacity:0.25; letter-spacing:14px; margin-top:2rem; display:block; }
 
-  /* ══ BRANDING ══ */
-  .branding-strip {
-    border-top:1px solid rgba(200,205,216,0.07);
-    padding:1.75rem 1.5rem;
-    text-align:center;
-    background:rgba(255,255,255,0.01);
-  }
+/* ══ BRANDING ══ */
+.branding-strip {
+border-top:1px solid rgba(200,205,216,0.07);
+padding:1.75rem 1.5rem;
+text-align:center;
+background:rgba(255,255,255,0.01);
+}
 
-  .branding-label {
-    font-size:7.7px; letter-spacing:4px; text-transform:uppercase;
-    color:var(--text-soft); font-weight:300; margin-bottom:0.75rem; display:block;
-  }
+.branding-label {
+font-size:7.7px; letter-spacing:4px; text-transform:uppercase;
+color:var(--text-soft); font-weight:300; margin-bottom:0.75rem; display:block;
+}
 
-  .branding-logo-wrap {
-    display:inline-flex; align-items:center; gap:10px;
-    border:1px solid rgba(200,205,216,0.12);
-    padding:10px 20px;
-    background:rgba(200,205,216,0.03);
-    text-decoration:none;
-    transition:border-color 0.3s, background 0.3s;
-  }
-  .branding-logo-wrap:hover {
-    border-color:rgba(200,205,216,0.3);
-    background:rgba(200,205,216,0.06);
-  }
+.branding-logo-wrap {
+display:inline-flex; align-items:center; gap:10px;
+border:1px solid rgba(200,205,216,0.12);
+padding:10px 20px;
+background:rgba(200,205,216,0.03);
+text-decoration:none;
+transition:border-color 0.3s, background 0.3s;
+}
+.branding-logo-wrap:hover {
+border-color:rgba(200,205,216,0.3);
+background:rgba(200,205,216,0.06);
+}
 
-  .branding-ig-icon {
-    width:22px; height:22px;
-    border:1px solid rgba(200,205,216,0.4); border-radius:6px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:14.3px; flex-shrink:0;
-  }
+.branding-ig-icon {
+width:22px; height:22px;
+border:1px solid rgba(200,205,216,0.4); border-radius:6px;
+display:flex; align-items:center; justify-content:center;
+font-size:14.3px; flex-shrink:0;
+}
 
-  .branding-handle {
-    font-family:'Cormorant Garamond',serif;
-    font-size:18.7px; font-weight:400; font-style:italic;
-    color:var(--silver2); letter-spacing:1px;
-  }
+.branding-handle {
+font-family:'Cormorant Garamond',serif;
+font-size:18.7px; font-weight:400; font-style:italic;
+color:var(--silver2); letter-spacing:1px;
+}
 
-  .branding-sub {
-    font-size:7.7px; letter-spacing:3px; text-transform:uppercase;
-    color:var(--text-soft); margin-top:0.75rem; display:block;
-    font-weight:300;
-  }
+.branding-sub {
+font-size:7.7px; letter-spacing:3px; text-transform:uppercase;
+color:var(--text-soft); margin-top:0.75rem; display:block;
+font-weight:300;
+}
 
-  /* ══ KEYFRAMES ══ */
-  @keyframes fadeUp { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);} }
-  @keyframes glowPulse {
-    0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1);}
-    50%{opacity:1;transform:translate(-50%,-50%) scale(1.15);}
-  }
-  @keyframes bokehFloat {
-    0%,100%{transform:translate(0,0) scale(1);}
-    33%{transform:translate(var(--tx,20px),var(--ty,-15px)) scale(1.1);}
-    66%{transform:translate(var(--tx2,-10px),var(--ty2,20px)) scale(0.9);}
-  }
-  @keyframes slowRotate { from{transform:rotate(0deg);}to{transform:rotate(360deg);} }
-  @keyframes bounce {
-    0%,100%{transform:translateX(-50%) translateY(0);}
-    50%{transform:translateX(-50%) translateY(8px);}
-  }
-  @keyframes gemFloat {
-    0%,100%{transform:translateY(0) rotate(-4deg);}
-    50%{transform:translateY(-10px) rotate(4deg);}
-  }
+/* ══ KEYFRAMES ══ */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);} }
+@keyframes glowPulse {
+0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1);}
+50%{opacity:1;transform:translate(-50%,-50%) scale(1.15);}
+}
+@keyframes bokehFloat {
+0%,100%{transform:translate(0,0) scale(1);}
+33%{transform:translate(var(--tx,20px),var(--ty,-15px)) scale(1.1);}
+66%{transform:translate(var(--tx2,-10px),var(--ty2,20px)) scale(0.9);}
+}
+@keyframes slowRotate { from{transform:rotate(0deg);}to{transform:rotate(360deg);} }
+@keyframes bounce {
+0%,100%{transform:translateX(-50%) translateY(0);}
+50%{transform:translateX(-50%) translateY(8px);}
+}
+@keyframes gemFloat {
+0%,100%{transform:translateY(0) rotate(-4deg);}
+50%{transform:translateY(-10px) rotate(4deg);}
+}
 
-  .reveal { opacity:0; transform:translateY(32px); transition:opacity 0.8s ease,transform 0.8s ease; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
+.reveal { opacity:0; transform:translateY(32px); transition:opacity 0.8s ease,transform 0.8s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
 </style>
 </head>
 <body>
 
 <canvas id="glitter-bg"></canvas>
 
-<div id="intro" role="dialog" aria-label="Invitación XV Años Kiara">
-  <canvas id="intro-canvas"></canvas>
-  <div class="intro-content">
-    <div class="intro-xv">XV</div>
-    <p class="intro-script">· años ·</p>
-    <h1 class="intro-name">Kiara</h1>
-    <div class="intro-line"></div>
-    <p class="intro-sub">Una noche única<br>que el tiempo no borrará</p>
-    <button class="intro-btn" onclick="openInvitation()">Abrir Invitación</button>
-  </div>
+<div id="intro" role="dialog" aria-label="Invitación XV Años Valentina">
+<canvas id="intro-canvas"></canvas>
+<div class="intro-content">
+<div class="intro-xv">XV</div>
+<p class="intro-script">· años ·</p>
+<h1 class="intro-name">Valentina</h1>
+<div class="intro-line"></div>
+<p class="intro-sub">Una noche única<br>que el tiempo no borrará</p>
+<button class="intro-btn" onclick="openInvitation()">Abrir Invitación</button>
+</div>
 </div>
 
 <div id="page-wrap">
 <div id="main">
 
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <p class="hero-eyebrow">✦   Una invitación especial   ✦</p>
-    <div class="hero-xv">XV</div>
-    <h2 class="hero-name">Kiara</h2>
-    <p class="hero-tagline">Quince años de luz · una noche para siempre</p>
-    <div class="hero-date">01 DE AGOSTO · 2026 · 21:00 HS</div>
-    <div class="hero-scroll" onclick="document.getElementById('cd-section').scrollIntoView({behavior:'smooth'})">
-      <span>scroll</span>
-      <div class="hero-scroll-arr"></div>
-    </div>
-  </section>
+<section class="hero">
+<div class="hero-glow"></div>
+<p class="hero-eyebrow">✦ Una invitación especial ✦</p>
+<div class="hero-xv">XV</div>
+<h2 class="hero-name">Valentina</h2>
+<p class="hero-tagline">Quince años de luz · una noche para siempre</p>
+<div class="hero-date">15 DE NOVIEMBRE · 2026 · 20:00 HS</div>
+<div class="hero-scroll" onclick="document.getElementById('cd-section').scrollIntoView({behavior:'smooth'})">
+<span>scroll</span>
+<div class="hero-scroll-arr"></div>
+</div>
+</section>
 
-  <div id="cd-section">
-    <div class="cd-bokeh-strip">
-      <div class="bokeh-layer">
-        <div class="bk" style="width:120px;height:120px;top:10%;left:-20px;--d:9s;--dl:0s;--tx:30px;--ty:-20px;--tx2:-15px;--ty2:25px;"></div>
-        <div class="bk" style="width:80px;height:80px;top:20%;right:10px;--d:11s;--dl:1.5s;--tx:-20px;--ty:30px;--tx2:25px;--ty2:-15px;"></div>
-        <div class="bk" style="width:150px;height:150px;top:40%;left:20%;--d:13s;--dl:0.5s;--tx:25px;--ty:-35px;--tx2:-30px;--ty2:20px;"></div>
-        <div class="bk" style="width:100px;height:100px;bottom:10%;right:5%;--d:10s;--dl:2s;--tx:-25px;--ty:20px;--tx2:20px;--ty2:-25px;"></div>
-        <div class="bk" style="width:60px;height:60px;top:5%;left:50%;--d:8s;--dl:3s;--tx:15px;--ty:25px;--tx2:-20px;--ty2:-10px;"></div>
-      </div>
-      <p class="cd-label-top">FALTA :</p>
-      <p class="cd-title">01 de Agosto · 2026 · 21:00 hs</p>
-      <div class="cd-grid" id="cd-grid">
-        <div class="cd-item"><div class="cd-num-wrap"><span class="cd-num" id="cd-d">--</span></div><span class="cd-lbl">Días</span></div>
-        <div class="cd-item"><div class="cd-num-wrap"><span class="cd-num" id="cd-h">--</span></div><span class="cd-lbl">Hs</span></div>
-        <div class="cd-item"><div class="cd-num-wrap"><span class="cd-num" id="cd-m">--</span></div><span class="cd-lbl">Min</span></div>
-        <div class="cd-item"><div class="cd-num-wrap"><span class="cd-num" id="cd-s">--</span></div><span class="cd-lbl">Seg</span></div>
-      </div>
-    </div>
-  </div>
+<div id="cd-section">
+<div class="cd-bokeh-strip">
+<div class="bokeh-layer">
+<div class="bk" style="width:120px;height:120px;top:10%;left:-20px;--d:9s;--dl:0s;--tx:30px;--ty:-20px;--tx2:-15px;--ty2:25px;"></div>
+<div class="bk" style="width:80px;height:80px;top:20%;right:10px;--d:11s;--dl:1.5s;--tx:-20px;--ty:30px;--tx2:25px;--ty2:-15px;"></div>
+<div class="bk" style="width:150px;height:150px;top:40%;left:20%;--d:13s;--dl:0.5s;--tx:25px;--ty:-35px;--tx2:-30px;--ty2:20px;"></div>
+<div class="bk" style="width:100px;height:100px;bottom:10%;right:5%;--d:10s;--dl:2s;--tx:-25px;--ty:20px;--tx2:20px;--ty2:-25px;"></div>
+<div class="bk" style="width:60px;height:60px;top:5%;left:50%;--d:8s;--dl:3s;--tx:15px;--ty:25px;--tx2:-20px;--ty2:-10px;"></div>
+</div>
+<p class="cd-label-top">FALTA :</p>
+<p class="cd-title">15 de Noviembre · 2026 · 20:00 hs</p>
+<div class="cd-grid" id="cd-grid">
+<div class="cd-item"><div class="cd-num-wrap"><span class="cd-num" id="cd-d">--</span></div><span class="cd-lbl">Días</span></div>
+<div class="cd-item"><div class="cd-num-wrap"><span class="cd-num" id="cd-h">--</span></div><span class="cd-lbl">Hs</span></div>
+<div class="cd-item"><div class="cd-num-wrap"><span class="cd-num" id="cd-m">--</span></div><span class="cd-lbl">Min</span></div>
+<div class="cd-item"><div class="cd-num-wrap"><span class="cd-num" id="cd-s">--</span></div><span class="cd-lbl">Seg</span></div>
+</div>
+</div>
+</div>
 
-  <section class="section">
-    <div class="reveal">
-      <p class="s-eyebrow">✦ galería</p>
-      <h2 class="s-title">Momentos de Kiara</h2>
-    </div>
-    <div class="s-div reveal" style="transition-delay:.1s">
-      <div class="s-line"></div><span class="s-star">✦</span><div class="s-line r"></div>
-    </div>
+<section class="section">
+<div class="reveal">
+<p class="s-eyebrow">✦ galería</p>
+<h2 class="s-title">Momentos de Valentina</h2>
+</div>
+<div class="s-div reveal" style="transition-delay:.1s">
+<div class="s-line"></div><span class="s-star">✦</span><div class="s-line r"></div>
+</div>
 
-    <div class="gal-wrap reveal" style="transition-delay:.15s">
+<div class="gal-wrap reveal" style="transition-delay:.15s">
 
-      <div class="gal-hero" onclick="openLB('https://i.ibb.co/Pv8HTMfX/Gal1.jpg','Kiara · I')">
-        <img src="https://i.ibb.co/Pv8HTMfX/Gal1.jpg" alt="Kiara I" loading="eager">
-        <div class="gal-shimmer"></div>
-        <span class="gal-lbl">I</span>
-      </div>
+<div class="gal-hero" onclick="openLB('https://placehold.co/900x1200/0a0a0f/c8cdd8?text=Foto+1','Valentina · I')">
+<img src="https://placehold.co/900x1200/0a0a0f/c8cdd8?text=Foto+1" alt="Valentina I" loading="eager">
+<div class="gal-shimmer"></div>
+<span class="gal-lbl">I</span>
+</div>
 
-      <div class="gal-pair">
-        <div class="gal-pair-item" onclick="openLB('https://i.ibb.co/0yBLspfJ/Gal2.jpg','Kiara · II')">
-          <img src="https://i.ibb.co/0yBLspfJ/Gal2.jpg" alt="Kiara II" loading="lazy">
-          <div class="gal-shimmer"></div>
-          <span class="gal-lbl">II</span>
-        </div>
-        <div class="gal-pair-item" onclick="openLB('https://i.ibb.co/5W8XShc1/Gal3.jpg','Kiara · III')">
-          <img src="https://i.ibb.co/5W8XShc1/Gal3.jpg" alt="Kiara III" loading="lazy">
-          <div class="gal-shimmer"></div>
-          <span class="gal-lbl">III</span>
-        </div>
-      </div>
+<div class="gal-pair">
+<div class="gal-pair-item" onclick="openLB('https://placehold.co/700x900/0a0a0f/c8cdd8?text=Foto+2','Valentina · II')">
+<img src="https://placehold.co/700x900/0a0a0f/c8cdd8?text=Foto+2" alt="Valentina II" loading="lazy">
+<div class="gal-shimmer"></div>
+<span class="gal-lbl">II</span>
+</div>
+<div class="gal-pair-item" onclick="openLB('https://placehold.co/700x900/0a0a0f/c8cdd8?text=Foto+3','Valentina · III')">
+<img src="https://placehold.co/700x900/0a0a0f/c8cdd8?text=Foto+3" alt="Valentina III" loading="lazy">
+<div class="gal-shimmer"></div>
+<span class="gal-lbl">III</span>
+</div>
+</div>
 
-    </div>
-  </section>
+</div>
+</section>
 
-  <div id="lightbox" role="dialog" aria-modal="true" onclick="closeLB()">
-    <button id="lb-close" aria-label="Cerrar">✕</button>
-    <img id="lb-img" src="" alt="">
-    <span id="lb-cap"></span>
-  </div>
+<div id="lightbox" role="dialog" aria-modal="true" onclick="closeLB()">
+<button id="lb-close" aria-label="Cerrar">✕</button>
+<img id="lb-img" src="" alt="">
+<span id="lb-cap"></span>
+</div>
 
-  <section class="section" style="padding-top:0">
-    <div class="reveal"><p class="s-eyebrow">✦ indumentaria</p></div>
-    <div class="dc-card reveal" style="transition-delay:.1s">
-      <div class="dc-icon-wrap">👗</div>
-      <div class="dc-title">Dress Code</div>
-      <div class="dc-subtitle">Elegante</div>
-      <p class="dc-desc">Esta noche merece tu mejor versión.<br>Vestimenta formal o semi-formal.<br>Tonos oscuros, neutros o plateados son bienvenidos.</p>
-      <div class="dc-tags">
-        <span class="dc-tag">Formal</span>
-        <span class="dc-tag">Semi-formal</span>
-        <span class="dc-tag">Negro</span>
-        <span class="dc-tag">Plateado</span>
-        <span class="dc-tag">Neutros</span>
-        <span class="dc-tag">Gala</span>
-      </div>
-    </div>
-  </section>
+<section class="section" style="padding-top:0">
+<div class="reveal"><p class="s-eyebrow">✦ indumentaria</p></div>
+<div class="dc-card reveal" style="transition-delay:.1s">
+<div class="dc-icon-wrap">👗</div>
+<div class="dc-title">Dress Code</div>
+<div class="dc-subtitle">Elegante</div>
+<p class="dc-desc">Esta noche merece tu mejor versión.<br>Vestimenta formal o semi-formal.<br>Tonos oscuros, neutros o plateados son bienvenidos.</p>
+<div class="dc-tags">
+<span class="dc-tag">Formal</span>
+<span class="dc-tag">Semi-formal</span>
+<span class="dc-tag">Negro</span>
+<span class="dc-tag">Plateado</span>
+<span class="dc-tag">Neutros</span>
+<span class="dc-tag">Gala</span>
+</div>
+</div>
+</section>
 
-  <section class="section" style="padding-top:0">
-    <div class="reveal"><p class="s-eyebrow">✦ sugerencia de regalo</p><h2 class="s-title">¿No sabés qué regalar?</h2></div>
-    <div class="s-div reveal" style="transition-delay:.1s">
-      <div class="s-line"></div><span class="s-star">✦</span><div class="s-line r"></div>
-    </div>
-    <div class="regalo-card reveal" style="transition-delay:.15s">
-      <span class="cofre-icon">🎁</span>
-      <div class="regalo-title">Lluvia de Sobres</div>
-      <div class="regalo-subtitle">· El cofre de los deseos ·</div>
-      <p class="regalo-desc">
-        En la fiesta vas a encontrar un cofre especial<br>
-        preparado con mucho amor por la familia de Kiara.<br><br>
-        Si no sabés qué regalar o querés hacerlo de una manera<br>
-        simple y significativa, podés depositar tu regalo<br>
-        en <strong style="color:var(--silver);">efectivo dentro de un sobre</strong> y dejarlo allí.
-      </p>
-      <div class="regalo-highlight">
-        <br>
-        Tu presencia ya es el mejor regalo.<br>
-        Pero si querés sumarte a la lluvia de sobres,<br>
-        el cofre te estará esperando esa noche. 🤍
-      </div>
-    </div>
-  </section>
+<section class="section" style="padding-top:0">
+<div class="reveal"><p class="s-eyebrow">✦ sugerencia de regalo</p><h2 class="s-title">¿No sabés qué regalar?</h2></div>
+<div class="s-div reveal" style="transition-delay:.1s">
+<div class="s-line"></div><span class="s-star">✦</span><div class="s-line r"></div>
+</div>
+<div class="regalo-card reveal" style="transition-delay:.15s">
+<span class="cofre-icon">🎁</span>
+<div class="regalo-title">Lluvia de Sobres</div>
+<div class="regalo-subtitle">· El cofre de los deseos ·</div>
+<p class="regalo-desc">
+En la fiesta vas a encontrar un cofre especial<br>
+preparado con mucho amor por la familia de Valentina.<br><br>
+Si no sabés qué regalar o querés hacerlo de una manera<br>
+simple y significativa, podés depositar tu regalo<br>
+en <strong style="color:var(--silver);">efectivo dentro de un sobre</strong> y dejarlo allí.
+</p>
+<div class="regalo-highlight">
+<br>
+Tu presencia ya es el mejor regalo.<br>
+Pero si querés sumarte a la lluvia de sobres,<br>
+el cofre te estará esperando esa noche. 🤍
+</div>
+</div>
+</section>
 
-  <section class="section">
-    <div class="reveal"><p class="s-eyebrow">✦ detalles</p><h2 class="s-title">La velada</h2></div>
-    <div class="s-div reveal" style="transition-delay:.1s">
-      <div class="s-line"></div><span class="s-star">✦</span><div class="s-line r"></div>
-    </div>
-    <div class="reveal" style="transition-delay:.15s">
-      <div class="det-card">
-        <div class="det-num">01</div>
-        <div class="det-info">
-          <div class="det-lbl">Fecha</div>
-          <div class="det-val">Sábado 01 de Agosto, 2026</div>
-        </div>
-      </div>
-      <div class="det-card">
-        <div class="det-num">02</div>
-        <div class="det-info">
-          <div class="det-lbl">Horario</div>
-          <div class="det-val">21:00 hs</div>
-          <div class="det-sub">¡La noche es nuestra! ✨</div>
-        </div>
-      </div>
-      <div class="det-card">
-        <div class="det-num">03</div>
-        <div class="det-info">
-          <div class="det-lbl">Lugar</div>
-          <div class="det-val">Cabaña Inaqueleen</div>
-          <div class="det-sub">12 de Octubre 8450, Mar del Plata</div>
-        </div>
-      </div>
-      <div class="det-card">
-        <div class="det-num">04</div>
-        <div class="det-info">
-          <div class="det-lbl">Dress Code</div>
-          <div class="det-val">Elegante</div>
-          <div class="det-sub">Formal · Semi-formal · Tonos oscuros o plateados</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="section">
+<div class="reveal"><p class="s-eyebrow">✦ detalles</p><h2 class="s-title">La velada</h2></div>
+<div class="s-div reveal" style="transition-delay:.1s">
+<div class="s-line"></div><span class="s-star">✦</span><div class="s-line r"></div>
+</div>
+<div class="reveal" style="transition-delay:.15s">
+<div class="det-card">
+<div class="det-num">01</div>
+<div class="det-info">
+<div class="det-lbl">Fecha</div>
+<div class="det-val">Domingo 15 de Noviembre, 2026</div>
+</div>
+</div>
+<div class="det-card">
+<div class="det-num">02</div>
+<div class="det-info">
+<div class="det-lbl">Horario</div>
+<div class="det-val">20:00 hs</div>
+<div class="det-sub">¡La noche es nuestra! ✨</div>
+</div>
+</div>
+<div class="det-card">
+<div class="det-num">03</div>
+<div class="det-info">
+<div class="det-lbl">Lugar</div>
+<div class="det-val">Salón Jardín de las Estrellas</div>
+<div class="det-sub">Av. Libertador 1234, Buenos Aires</div>
+</div>
+</div>
+<div class="det-card">
+<div class="det-num">04</div>
+<div class="det-info">
+<div class="det-lbl">Dress Code</div>
+<div class="det-val">Elegante</div>
+<div class="det-sub">Formal · Semi-formal · Tonos oscuros o plateados</div>
+</div>
+</div>
+</div>
+</section>
 
-  <section class="section" style="padding-top:0">
-    <div class="reveal"><p class="s-eyebrow">✦ ubicación</p><h2 class="s-title">Cómo llegar</h2></div>
-    <div class="s-div reveal" style="transition-delay:.1s">
-      <div class="s-line"></div><span class="s-star">✦</span><div class="s-line r"></div>
-    </div>
-    <div class="map-wrap reveal" style="transition-delay:.15s">
-      <div id="map"></div>
-      <div class="map-body">
-        <div class="map-name">Cabaña Inaqueleen</div>
-        <div class="map-addr">12 de Octubre 8450<br>B7611FJD Mar del Plata, Buenos Aires</div>
-        <button class="btn-gps" onclick="openGPS()">
-          <span>📍</span> ¿Cómo llegar?
-        </button>
-      </div>
-    </div>
-  </section>
+<section class="section" style="padding-top:0">
+<div class="reveal"><p class="s-eyebrow">✦ ubicación</p><h2 class="s-title">Cómo llegar</h2></div>
+<div class="s-div reveal" style="transition-delay:.1s">
+<div class="s-line"></div><span class="s-star">✦</span><div class="s-line r"></div>
+</div>
+<div class="map-wrap reveal" style="transition-delay:.15s">
+<div id="map"></div>
+<div class="map-body">
+<div class="map-name">Salón Jardín de las Estrellas</div>
+<div class="map-addr">Av. Libertador 1234<br>C1425 Buenos Aires, Argentina</div>
+<button class="btn-gps" onclick="openGPS()">
+<span>📍</span> ¿Cómo llegar?
+</button>
+</div>
+</div>
+</section>
 
-  <div class="rsvp-header reveal">
-    <span class="rsvp-label">✦ R · S · V · P</span>
-    <h2 class="rsvp-title">Confirmación</h2>
-    <p class="rsvp-sub">Kiara espera recibirte en su gran noche.<br>Por favor confirmá tu asistencia.</p>
-    <div class="rsvp-deadline">⏳   Fecha límite: <strong>21 de Julio, 2026</strong></div>
-  </div>
+<div class="rsvp-header reveal">
+<span class="rsvp-label">✦ R · S · V · P</span>
+<h2 class="rsvp-title">Confirmación</h2>
+<p class="rsvp-sub">Valentina espera recibirte en su gran noche.<br>Por favor confirmá tu asistencia.</p>
+<div class="rsvp-deadline">⏳ Fecha límite: <strong>01 de Noviembre, 2026</strong></div>
+</div>
 
-  <div class="cf-wrap reveal">
-    <div id="cf-form">
-      <div class="f-group">
-        <label class="f-label" for="f-name">Tu nombre completo</label>
-        <input class="f-input" id="f-name" type="text" placeholder="¿Cómo te llamás?" autocomplete="name">
-      </div>
-      <div class="f-group">
-        <div class="f-label" style="margin-bottom:10px;">¿Asistís?</div>
-        <div class="f-radio-group">
-          <div class="f-radio-opt selected" id="opt-si" onclick="selectOpt('si')">✦   Sí, voy</div>
-          <div class="f-radio-opt" id="opt-no" onclick="selectOpt('no')">✕   No puedo</div>
-        </div>
-      </div>
-      <div id="asiste-fields">
-      </div>
-      <div class="f-group">
-        <label class="f-label" for="f-msg">Un mensaje para Kiara (opcional)</label>
-        <textarea class="f-input" id="f-msg" rows="3" placeholder="Un deseo, un abrazo... ✨" style="resize:none;"></textarea>
-      </div>
-      <button class="btn-confirm" onclick="sendWA()">
-        <span>✦</span> Confirmar asistencia <span>✦</span>
-      </button>
-    </div>
-    <div class="cf-ok" id="cf-ok">
-      <span class="cf-ok-icon">✨</span>
-      <div class="cf-ok-msg">¡Kiara te espera con los brazos abiertos!</div>
-      <div class="cf-ok-sub">Tu confirmación fue enviada por WhatsApp.<br>¡Nos vemos en la gran noche! ✦</div>
-    </div>
-  </div>
+<div class="cf-wrap reveal">
+<div id="cf-form">
+<div class="f-group">
+<label class="f-label" for="f-name">Tu nombre completo</label>
+<input class="f-input" id="f-name" type="text" placeholder="¿Cómo te llamás?" autocomplete="name">
+</div>
+<div class="f-group">
+<div class="f-label" style="margin-bottom:10px;">¿Asistís?</div>
+<div class="f-radio-group">
+<div class="f-radio-opt selected" id="opt-si" onclick="selectOpt('si')">✦ Sí, voy</div>
+<div class="f-radio-opt" id="opt-no" onclick="selectOpt('no')">✕ No puedo</div>
+</div>
+</div>
+<div id="asiste-fields">
+</div>
+<div class="f-group">
+<label class="f-label" for="f-msg">Un mensaje para Valentina (opcional)</label>
+<textarea class="f-input" id="f-msg" rows="3" placeholder="Un deseo, un abrazo... ✨" style="resize:none;"></textarea>
+</div>
+<button class="btn-confirm" onclick="sendWA()">
+<span>✦</span> Confirmar asistencia <span>✦</span>
+</button>
+</div>
+<div class="cf-ok" id="cf-ok">
+<span class="cf-ok-icon">✨</span>
+<div class="cf-ok-msg">¡Valentina te espera con los brazos abiertos!</div>
+<div class="cf-ok-sub">Tu confirmación fue enviada por WhatsApp.<br>¡Nos vemos en la gran noche! ✦</div>
+</div>
+</div>
 
-  <footer class="footer">
-    <span class="ft-ornament">✦ ✦ ✦</span>
-    <p class="ft-quote">
-      Quince años son el umbral más hermoso —<br>
-      el último paso de la niña que fuiste<br>
-      y el primero de la mujer que ya sos.<br>
-      Kiara, que esta noche de destellos<br>
-      sea el espejo de todo lo que brillas por dentro.<br>
-      El mundo ya no puede esperar para verte llegar.
-    </p>
-    <div class="ft-name">Kiara</div>
-    <div class="ft-div"></div>
-    <p class="ft-brand">XV Años · 01 de Agosto · 2026</p>
-    <span class="ft-stars">✦ ✦ ✦</span>
-  </footer>
+<footer class="footer">
+<span class="ft-ornament">✦ ✦ ✦</span>
+<p class="ft-quote">
+Quince años son el umbral más hermoso —<br>
+el último paso de la niña que fuiste<br>
+y el primero de la mujer que ya sos.<br>
+Valentina, que esta noche de destellos<br>
+sea el espejo de todo lo que brillas por dentro.<br>
+El mundo ya no puede esperar para verte llegar.
+</p>
+<div class="ft-name">Valentina</div>
+<div class="ft-div"></div>
+<p class="ft-brand">XV Años · 15 de Noviembre · 2026</p>
+<span class="ft-stars">✦ ✦ ✦</span>
+</footer>
 
-  <div class="branding-strip">
-    <span class="branding-label">Invitación digital diseñada por</span>
-    <a class="branding-logo-wrap" href="https://instagram.com/NovaInvite.co" target="_blank" rel="noopener" aria-label="Instagram @NovaInvite.co">
-      <div class="branding-ig-icon">📷</div>
-      <span class="branding-handle">@NovaInvite.co</span>
-    </a>
-    <span class="branding-sub">Invitaciones digitales premium · Instagram</span>
-  </div>
+<div class="branding-strip">
+<span class="branding-label">Invitación digital diseñada por</span>
+<a class="branding-logo-wrap" href="https://instagram.com/NovaInvite.co" target="_blank" rel="noopener" aria-label="Instagram @NovaInvite.co">
+<div class="branding-ig-icon">📷</div>
+<span class="branding-handle">@NovaInvite.co</span>
+</a>
+<span class="branding-sub">Invitaciones digitales premium · Instagram</span>
+</div>
 
 <!-- ══ AUDIO ══ -->
 <audio id="bg-music" loop preload="auto">
-  <source src="https://raw.githubusercontent.com/Estudiofotoinfantil/Mis15Kiara/main/Ed%20Sheeran%20-%20Photograph%20(Official%20Music%20Video)%20-%20(64%20Kbps).mp3" type="audio/mpeg">
+<source src="https://raw.githubusercontent.com/Estudiofotoinfantil/Mis15Kiara/main/Ed%20Sheeran%20-%20Photograph%20(Official%20Music%20Video)%20-%20(64%20Kbps).mp3" type="audio/mpeg">
 </audio>
 
 <!-- ══ MUTE BUTTON ══ -->
 <button id="mute-btn" onclick="toggleMute()" aria-label="Mutear música" style="
-  display:none;
-  position:fixed;
-  bottom:22px;
-  right:18px;
-  z-index:999;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  border:1px solid rgba(200,205,216,0.35);
-  background:rgba(5,5,8,0.82);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  cursor:pointer;
-  font-size:19.8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 2px 16px rgba(0,0,0,0.5);
-  transition:border-color 0.3s, transform 0.15s;
-  -webkit-tap-highlight-color:transparent;
+display:none;
+position:fixed;
+bottom:22px;
+right:18px;
+z-index:999;
+width:44px;
+height:44px;
+border-radius:50%;
+border:1px solid rgba(200,205,216,0.35);
+background:rgba(5,5,8,0.82);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+cursor:pointer;
+font-size:19.8px;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 2px 16px rgba(0,0,0,0.5);
+transition:border-color 0.3s, transform 0.15s;
+-webkit-tap-highlight-color:transparent;
 ">🔊</button>
 
 </div>
@@ -848,188 +848,188 @@
 var adults=1, kids=0, asiste='si';
 
 function cnt(t,d){
-  if(t==='a'){ adults=Math.max(1,adults+d); document.getElementById('a-val').textContent=adults; }
-  else        { kids=Math.max(0,kids+d);     document.getElementById('k-val').textContent=kids; }
+if(t==='a'){ adults=Math.max(1,adults+d); document.getElementById('a-val').textContent=adults; }
+else { kids=Math.max(0,kids+d); document.getElementById('k-val').textContent=kids; }
 }
 
 function selectOpt(v){
-  asiste=v;
-  document.getElementById('opt-si').classList.toggle('selected',v==='si');
-  document.getElementById('opt-no').classList.toggle('selected',v==='no');
-  document.getElementById('asiste-fields').style.display=v==='si'?'block':'none';
+asiste=v;
+document.getElementById('opt-si').classList.toggle('selected',v==='si');
+document.getElementById('opt-no').classList.toggle('selected',v==='no');
+document.getElementById('asiste-fields').style.display=v==='si'?'block':'none';
 }
 
 /* ══ GLITTER ENGINE ══ */
 function initGlitter(canvasId,density,bokehCount,sz){
-  var cv=document.getElementById(canvasId); if(!cv)return;
-  var ctx=cv.getContext('2d');
-  function resize(){
-    cv.width=Math.min(window.innerWidth,430);
-    cv.height=window.innerHeight;
-  }
-  resize(); window.addEventListener('resize',resize);
+var cv=document.getElementById(canvasId); if(!cv)return;
+var ctx=cv.getContext('2d');
+function resize(){
+cv.width=Math.min(window.innerWidth,430);
+cv.height=window.innerHeight;
+}
+resize(); window.addEventListener('resize',resize);
 
-  var dust=[];
-  for(var i=0;i<density;i++) dust.push({
-    x:Math.random()*cv.width, y:Math.random()*cv.height,
-    r:0.3+Math.random()*sz, a:0.1+Math.random()*0.7,
-    vx:(Math.random()-.5)*0.12, vy:(Math.random()-.5)*0.08,
-    phase:Math.random()*Math.PI*2, ts:0.02+Math.random()*0.04
-  });
+var dust=[];
+for(var i=0;i<density;i++) dust.push({
+x:Math.random()*cv.width, y:Math.random()*cv.height,
+r:0.3+Math.random()*sz, a:0.1+Math.random()*0.7,
+vx:(Math.random()-.5)*0.12, vy:(Math.random()-.5)*0.08,
+phase:Math.random()*Math.PI*2, ts:0.02+Math.random()*0.04
+});
 
-  var bokeh=[];
-  for(var j=0;j<bokehCount;j++){
-    var bs=6+Math.random()*28;
-    bokeh.push({ x:Math.random()*cv.width, y:Math.random()*cv.height, r:bs,
-      a:0.04+Math.random()*0.14, vx:(Math.random()-.5)*0.06, vy:(Math.random()-.5)*0.04,
-      phase:Math.random()*Math.PI*2, sp:0.008+Math.random()*0.012 });
-  }
+var bokeh=[];
+for(var j=0;j<bokehCount;j++){
+var bs=6+Math.random()*28;
+bokeh.push({ x:Math.random()*cv.width, y:Math.random()*cv.height, r:bs,
+a:0.04+Math.random()*0.14, vx:(Math.random()-.5)*0.06, vy:(Math.random()-.5)*0.04,
+phase:Math.random()*Math.PI*2, sp:0.008+Math.random()*0.012 });
+}
 
-  var sparks=[];
-  function spawnSpark(){
-    sparks.push({ x:Math.random()*cv.width, y:Math.random()*cv.height,
-      size:2+Math.random()*4, a:1, da:0.02+Math.random()*0.03,
-      rot:Math.random()*Math.PI*2, drot:(Math.random()-.5)*0.08 });
-  }
-  setInterval(function(){ if(sparks.length<15) spawnSpark(); },300);
+var sparks=[];
+function spawnSpark(){
+sparks.push({ x:Math.random()*cv.width, y:Math.random()*cv.height,
+size:2+Math.random()*4, a:1, da:0.02+Math.random()*0.03,
+rot:Math.random()*Math.PI*2, drot:(Math.random()-.5)*0.08 });
+}
+setInterval(function(){ if(sparks.length<15) spawnSpark(); },300);
 
-  var frame=0;
-  function draw(){
-    ctx.clearRect(0,0,cv.width,cv.height); frame++;
-    dust.forEach(function(p){
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0)p.x=cv.width; if(p.x>cv.width)p.x=0;
-      if(p.y<0)p.y=cv.height; if(p.y>cv.height)p.y=0;
-      var a=p.a*(0.4+0.6*Math.sin(frame*p.ts+p.phase));
-      ctx.save(); ctx.globalAlpha=a; ctx.fillStyle='#fff';
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); ctx.restore();
-    });
-    bokeh.forEach(function(b){
-      b.x+=b.vx; b.y+=b.vy;
-      if(b.x<-50)b.x=cv.width+50; if(b.x>cv.width+50)b.x=-50;
-      if(b.y<-50)b.y=cv.height+50; if(b.y>cv.height+50)b.y=-50;
-      var a=b.a*(0.5+0.5*Math.sin(frame*b.sp+b.phase));
-      ctx.save(); ctx.globalAlpha=a;
-      var gr=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
-      gr.addColorStop(0,'rgba(220,225,240,1)');
-      gr.addColorStop(0.4,'rgba(200,208,225,0.6)');
-      gr.addColorStop(1,'rgba(200,208,225,0)');
-      ctx.fillStyle=gr; ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2); ctx.fill(); ctx.restore();
-    });
-    sparks=sparks.filter(function(s){
-      s.a-=s.da; s.rot+=s.drot; if(s.a<=0)return false;
-      ctx.save(); ctx.globalAlpha=s.a*0.8; ctx.fillStyle='#fff';
-      ctx.translate(s.x,s.y); ctx.rotate(s.rot);
-      var sp=s.size;
-      ctx.beginPath();
-      ctx.moveTo(0,-sp*2); ctx.lineTo(sp*0.4,-sp*0.4); ctx.lineTo(sp*2,0);
-      ctx.lineTo(sp*0.4,sp*0.4); ctx.lineTo(0,sp*2); ctx.lineTo(-sp*0.4,sp*0.4);
-      ctx.lineTo(-sp*2,0); ctx.lineTo(-sp*0.4,-sp*0.4);
-      ctx.closePath(); ctx.fill(); ctx.restore(); return true;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
+var frame=0;
+function draw(){
+ctx.clearRect(0,0,cv.width,cv.height); frame++;
+dust.forEach(function(p){
+p.x+=p.vx; p.y+=p.vy;
+if(p.x<0)p.x=cv.width; if(p.x>cv.width)p.x=0;
+if(p.y<0)p.y=cv.height; if(p.y>cv.height)p.y=0;
+var a=p.a*(0.4+0.6*Math.sin(frame*p.ts+p.phase));
+ctx.save(); ctx.globalAlpha=a; ctx.fillStyle='#fff';
+ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); ctx.restore();
+});
+bokeh.forEach(function(b){
+b.x+=b.vx; b.y+=b.vy;
+if(b.x<-50)b.x=cv.width+50; if(b.x>cv.width+50)b.x=-50;
+if(b.y<-50)b.y=cv.height+50; if(b.y>cv.height+50)b.y=-50;
+var a=b.a*(0.5+0.5*Math.sin(frame*b.sp+b.phase));
+ctx.save(); ctx.globalAlpha=a;
+var gr=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
+gr.addColorStop(0,'rgba(220,225,240,1)');
+gr.addColorStop(0.4,'rgba(200,208,225,0.6)');
+gr.addColorStop(1,'rgba(200,208,225,0)');
+ctx.fillStyle=gr; ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2); ctx.fill(); ctx.restore();
+});
+sparks=sparks.filter(function(s){
+s.a-=s.da; s.rot+=s.drot; if(s.a<=0)return false;
+ctx.save(); ctx.globalAlpha=s.a*0.8; ctx.fillStyle='#fff';
+ctx.translate(s.x,s.y); ctx.rotate(s.rot);
+var sp=s.size;
+ctx.beginPath();
+ctx.moveTo(0,-sp*2); ctx.lineTo(sp*0.4,-sp*0.4); ctx.lineTo(sp*2,0);
+ctx.lineTo(sp*0.4,sp*0.4); ctx.lineTo(0,sp*2); ctx.lineTo(-sp*0.4,sp*0.4);
+ctx.lineTo(-sp*2,0); ctx.lineTo(-sp*0.4,-sp*0.4);
+ctx.closePath(); ctx.fill(); ctx.restore(); return true;
+});
+requestAnimationFrame(draw);
+}
+draw();
 }
 
 /* ══ OPEN ══ */
 function openInvitation(){
-  var intro=document.getElementById('intro');
-  intro.style.opacity='0';
-  /* Arrancar música en el mismo gesto del usuario */
-  var music=document.getElementById('bg-music');
-  music.volume=0.5;
-  music.play().catch(function(){});
-  document.getElementById('mute-btn').style.display='flex';
-  setTimeout(function(){
-    intro.style.display='none';
-    document.getElementById('main').classList.add('visible');
-    initGlitter('glitter-bg',180,22,1.2);
-    initReveal(); initCountdown(); initMap();
-  },1200);
+var intro=document.getElementById('intro');
+intro.style.opacity='0';
+/* Arrancar música en el mismo gesto del usuario */
+var music=document.getElementById('bg-music');
+music.volume=0.5;
+music.play().catch(function(){});
+document.getElementById('mute-btn').style.display='flex';
+setTimeout(function(){
+intro.style.display='none';
+document.getElementById('main').classList.add('visible');
+initGlitter('glitter-bg',180,22,1.2);
+initReveal(); initCountdown(); initMap();
+},1200);
 }
 
 /* ══ MUTE ══ */
 function toggleMute(){
-  var music=document.getElementById('bg-music');
-  var btn=document.getElementById('mute-btn');
-  music.muted=!music.muted;
-  btn.textContent=music.muted?'🔇':'🔊';
+var music=document.getElementById('bg-music');
+var btn=document.getElementById('mute-btn');
+music.muted=!music.muted;
+btn.textContent=music.muted?'🔇':'🔊';
 }
 
 initGlitter('intro-canvas',220,30,1.4);
 
 /* ══ REVEAL ══ */
 function initReveal(){
-  var obs=new IntersectionObserver(function(en){
-    en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  },{threshold:0.08});
-  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+var obs=new IntersectionObserver(function(en){
+en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
 }
 
 /* ══ COUNTDOWN ══ */
 function initCountdown(){
-  var target=new Date('2026-08-01T21:00:00');
-  function upd(){
-    var diff=target-new Date();
-    if(diff<=0){
-      document.getElementById('cd-grid').innerHTML='<p style="font-family:Cormorant Garamond,serif;font-size:20px;font-style:italic;color:#C8CDD8;padding:1rem;grid-column:1/-1;text-align:center;">✦ ¡Esta noche es LA noche de Kiara! ✦</p>';
-      return;
-    }
-    var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),
-        m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
-    document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
-    document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
-    document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
-    document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
-  }
-  upd(); setInterval(upd,1000);
+var target=new Date('2026-11-15T20:00:00');
+function upd(){
+var diff=target-new Date();
+if(diff<=0){
+document.getElementById('cd-grid').innerHTML='<p style="font-family:Cormorant Garamond,serif;font-size:20px;font-style:italic;color:#C8CDD8;padding:1rem;grid-column:1/-1;text-align:center;">✦ ¡Esta noche es LA noche de Valentina! ✦</p>';
+return;
+}
+var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),
+m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+}
+upd(); setInterval(upd,1000);
 }
 
 /* ══ MAP ══ */
 function initMap(){
-  var lat=-38.008544, lng=-57.592283;
-  var map=L.map('map',{zoomControl:true,dragging:true,scrollWheelZoom:false}).setView([lat,lng],15);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map);
-  var icon=L.divIcon({html:'<div style="font-size:22px;filter:drop-shadow(0 0 8px #C8CDD8)">✦</div>',iconSize:[30,30],iconAnchor:[15,30],className:''});
-  L.marker([lat,lng],{icon:icon}).addTo(map).bindPopup('<b>Cabaña Inaqueleen</b><br>XV Años · Kiara').openPopup();
+var lat=-34.603722, lng=-58.381592;
+var map=L.map('map',{zoomControl:true,dragging:true,scrollWheelZoom:false}).setView([lat,lng],15);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map);
+var icon=L.divIcon({html:'<div style="font-size:22px;filter:drop-shadow(0 0 8px #C8CDD8)">✦</div>',iconSize:[30,30],iconAnchor:[15,30],className:''});
+L.marker([lat,lng],{icon:icon}).addTo(map).bindPopup('<b>Salón Jardín de las Estrellas</b><br>XV Años · Valentina').openPopup();
 }
 
 /* ══ GPS ══ */
 function openGPS(){
-  var lat=-38.008544,lng=-57.592283;
-  window.open(/iPad|iPhone|iPod/.test(navigator.userAgent)
-    ?'maps://maps.apple.com/?daddr='+lat+','+lng
-    :'https://www.google.com/maps/dir/?api=1&destination='+lat+','+lng,'_blank');
+var lat=-34.603722,lng=-58.381592;
+window.open(/iPad|iPhone|iPod/.test(navigator.userAgent)
+?'maps://maps.apple.com/?daddr='+lat+','+lng
+:'https://www.google.com/maps/dir/?api=1&destination='+lat+','+lng,'_blank');
 }
 
 /* ══ LIGHTBOX ══ */
 function openLB(src,cap){
-  document.getElementById('lb-img').src=src;
-  document.getElementById('lb-cap').textContent=cap;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
+document.getElementById('lb-img').src=src;
+document.getElementById('lb-cap').textContent=cap;
+document.getElementById('lightbox').classList.add('open');
+document.body.style.overflow='hidden';
 }
 function closeLB(){
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow='';
+document.getElementById('lightbox').classList.remove('open');
+document.body.style.overflow='';
 }
 
 /* ══ WHATSAPP ══ */
 function sendWA(){
-  var name=document.getElementById('f-name').value.trim();
-  if(!name){ document.getElementById('f-name').focus(); return; }
-  var msg=document.getElementById('f-msg').value.trim();
-  var text;
-  if(asiste==='si'){
-    text='Hola! Soy '+name+' y quería confirmar que voy a estar en los XV de Kiara. ¡Nos vemos el 1 de agosto! 🤍';
-  } else {
-    text='Hola! Soy '+name+'. Lamentablemente no voy a poder asistir a los XV de Kiara. ¡Que sea una noche increíble! ✨';
-  }
-  if(msg) text+='\n\n'+msg;
-  window.open('https://api.whatsapp.com/send?phone=5492236196431&text='+encodeURIComponent(text),'_blank');
-  document.getElementById('cf-form').style.display='none';
-  document.getElementById('cf-ok').classList.add('show');
+var name=document.getElementById('f-name').value.trim();
+if(!name){ document.getElementById('f-name').focus(); return; }
+var msg=document.getElementById('f-msg').value.trim();
+var text;
+if(asiste==='si'){
+text='Hola! Soy '+name+' y quería confirmar que voy a estar en los XV de Valentina. ¡Nos vemos el 15 de noviembre! 🤍';
+} else {
+text='Hola! Soy '+name+'. Lamentablemente no voy a poder asistir a los XV de Valentina. ¡Que sea una noche increíble! ✨';
+}
+if(msg) text+='\n\n'+msg;
+window.open('https://api.whatsapp.com/send?phone=5491100000000&text='+encodeURIComponent(text),'_blank');
+document.getElementById('cf-form').style.display='none';
+document.getElementById('cf-ok').classList.add('show');
 }
 </script>
 </body>
